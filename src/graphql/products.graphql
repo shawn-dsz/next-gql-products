@@ -1,5 +1,11 @@
-query Query {
+query getProducts {
   products {
     name
+    breed
+    ageInWeeks
+    image
+    sex
+    weight
+    fee
   }
 }

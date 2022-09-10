@@ -1,31 +1,10 @@
 import { ApolloServer } from 'apollo-server-micro';
 import 'reflect-metadata';
-import {
-  buildSchema,
-  Resolver,
-  Query,
-  Arg,
-  ObjectType,
-  Field,
-  ID,
-} from 'type-graphql';
-
-@ObjectType()
-export class Product {
-  @Field(() => ID)
-  name: string;
-}
-
-@Resolver(Product)
-export class ProductResolver {
-  @Query(() => [Product])
-  products(): Product[] {
-    return [{ name: 'Snickers' }, { name: 'Sunny' }];
-  }
-}
+import { buildSchema } from 'type-graphql';
+import { ProductsResolver } from '../../src/schema/products.resolver';
 
 const schema = await buildSchema({
-  resolvers: [ProductResolver],
+  resolvers: [ProductsResolver],
 });
 
 const server = new ApolloServer({
